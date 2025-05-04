@@ -12,3 +12,10 @@ npm create vite -> if using vite
 
 npx create-react-app -> if using react create app
 
+
+react and react dom are installed via package.json 
+node uses package.json to manage dependencies 
+
+.createRoot() -> takes a pointer to render it. 
+.render() -> React method to run 
+
