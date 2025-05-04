@@ -1,10 +1,17 @@
 import NewPost from "./NewPost";
 import Post from "./Post";
 import classes from "./PostsList.module.css";
+import Modal from "./Modal";
 import { useState } from "react";
+
 export default function PostsList() {
+  const [modalIsVisible, setModalIsVisible] = useState(true);
   const [enteredBody, setEnteredBody] = useState("");
   const [enteredAuthor, setEnteredAuthor] = useState("");
+
+  const hideModalHandler = () => {
+    setModalIsVisible(false);
+  };
 
   const changeBodyHandler = (event) => {
     setEnteredBody(event.target.value);
@@ -13,12 +20,18 @@ export default function PostsList() {
     setEnteredAuthor(event.target.value);
   };
 
+
   return (
     <>
-      <NewPost
-        onBodyChange={changeBodyHandler}
-        onAuthorChange={authorChangeHandler}
-      />
+      {modalIsVisible && (
+        <Modal onClose={hideModalHandler}>
+          <NewPost
+            onBodyChange={changeBodyHandler}
+            onAuthorChange={authorChangeHandler}
+          />
+        </Modal>
+      )}
+
       <ul className={classes.posts}>
         <Post fighter={enteredAuthor} quote={enteredBody} />
         <Post fighter="Islam" quote="Kangaroo have no wrestling brether" />
