@@ -20,18 +20,21 @@ export default function PostsList() {
     setEnteredAuthor(event.target.value);
   };
 
+  let modalContent;
+  if (modalIsVisible) {
+    modalContent = (
+      <Modal onClose={hideModalHandler}>
+        <NewPost
+          onBodyChange={changeBodyHandler}
+          onAuthorChange={authorChangeHandler}
+        />
+      </Modal>
+    );
+  }
 
   return (
     <>
-      {modalIsVisible && (
-        <Modal onClose={hideModalHandler}>
-          <NewPost
-            onBodyChange={changeBodyHandler}
-            onAuthorChange={authorChangeHandler}
-          />
-        </Modal>
-      )}
-
+      {modalContent}
       <ul className={classes.posts}>
         <Post fighter={enteredAuthor} quote={enteredBody} />
         <Post fighter="Islam" quote="Kangaroo have no wrestling brether" />
