@@ -1,8 +1,9 @@
+import classes from "./Post.module.css";
 export default function Post(props) {
   return (
-    <div>
-      <p>{props.fighter}</p>
-      <p>{props.quote}</p>
+    <div className={classes.post}>
+      <p className={classes.author}>{props.fighter}</p>
+      <p className={classes.text}>{props.quote}</p>
     </div>
   );
 }
