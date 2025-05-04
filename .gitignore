@@ -1,0 +1,28 @@
+# Ignore all node_modules in subfolders
+**/node_modules/
+
+# Ignore environment variables and build files in subprojects
+**/.env
+**/.env.local
+**/.env.development.local
+**/.env.test.local
+**/.env.production.local
+
+**/.next/
+**/out/
+**/dist/
+**/build/
+
+# Ignore SQLite database files (any .db files anywhere in the project)
+**/*.db
+
+# Ignore log files across all subprojects
+*.log
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+#Ignore this heavy react form
+**/meetup.js
+
