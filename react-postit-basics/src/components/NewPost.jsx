@@ -1,7 +1,7 @@
 import classes from "./NewPost.module.css";
 import { useState } from "react";
 
-function NewPost({ onBodyChange, onAuthorChange, onCancel }) {
+function NewPost({ onCancel, onAddPost }) {
   const [enteredBody, setEnteredBody] = useState("");
   const [enteredAuthor, setEnteredAuthor] = useState("");
 
@@ -17,6 +17,8 @@ function NewPost({ onBodyChange, onAuthorChange, onCancel }) {
       body: enteredBody,
       author: enteredAuthor
     };
+    onAddPost(postData);
+    onCancel();
   };
 
   return (
@@ -29,7 +31,7 @@ function NewPost({ onBodyChange, onAuthorChange, onCancel }) {
         <label htmlFor="name">Your name</label>
         <input type="text" id="name" required onChange={authorChangeHandler} />
       </p>
-      <p className={classes.action}>
+      <p className={classes.actions}>
         <button type="button" onClick={onCancel}>
           Cancel
         </button>
