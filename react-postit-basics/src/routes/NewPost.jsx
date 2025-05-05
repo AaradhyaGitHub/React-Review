@@ -1,18 +1,18 @@
 import Modal from "../components/Modal";
 import classes from "./NewPost.module.css";
-import { Link } from "react-router-dom";
+import { Link, Form } from "react-router-dom";
 
-export default function NewPost({ onAddPost }) {
+export default function NewPost() {
   return (
     <Modal>
-      <form className={classes.form}>
+      <Form method="post" className={classes.form}>
         <p>
           <label htmlFor="body">Text</label>
-          <textarea id="body" required rows={3} />
+          <textarea id="body" name="body" required rows={3} />
         </p>
         <p>
           <label htmlFor="name">Your name</label>
-          <input type="text" id="name" required />
+          <input type="text" id="name" name="author" required />
         </p>
         <p className={classes.actions}>
           <Link to=".." type="button">
@@ -20,17 +20,20 @@ export default function NewPost({ onAddPost }) {
           </Link>
           <button>Submit</button>
         </p>
-      </form>
+      </Form>
     </Modal>
   );
 }
 
-export function action() {
-  fetch("http://localhost:8080/posts", {
+export async function action({ request }) {
+  const formData = await request.formData();
+  const postData = Object.fromEntries(formData);
+  await fetch("http://localhost:8080/posts", {
     method: "POST",
     body: JSON.stringify(postData),
     headers: {
       "Content-Type": "application/json"
     }
   });
+  
 }
